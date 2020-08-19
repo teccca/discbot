@@ -1,5 +1,10 @@
 this command only works in seconds at the moment, but once I find out how to convert the time in minutes, hours and days I'll change it
 
+import discord
+from discord.ext import commands
+import os
+import asyncio
+
 @client.command()
 @commands.has_permissions(kick_members=True) 
 async def tempmute(ctx, member: discord.Member, time=0, *, reason=None): 
