@@ -1,0 +1,18 @@
+this command only works in seconds at the moment, but once I find out how to convert the time in minutes, hours and days I'll change it
+
+@client.command()
+@commands.has_permissions(kick_members=True) 
+async def tempmute(ctx, member: discord.Member, time=0, *, reason=None): 
+  if time==0:
+    await ctx.send("You need to type in a valid amount of time")
+    return
+  if reason==None:
+    await ctx.send("You need to type in a valid reason")
+    return
+  rolemuted = discord.utils.get(ctx.guild.roles, name="Muted") < gets the role
+  await member.add_roles(rolemuted) < adds the role
+  await ctx.send(f"{member.mention} has been muted for {time} seconds for {reason}")
+  await member.send(f"{member.mention} , you have been muted for {time} seconds for {reason}")
+  await asyncio.sleep(time) < makes it so once time gets to 0 the role "Muted" is removed
+  await member.remove_roles(rolemuted) < removes the "Muted" role
+  await member.send(f"Times up {member.mention} , be good this time")
